@@ -1,9 +1,7 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# Foc și Apă
 
 ### Important!
-Aveți voie cu cod generat de modele de limbaj la care nu ați contribuit semnificativ doar în folder-ul `generated`.
-Codul generat pus "ca să fie"/pe care nu îl înțelegeți se punctează doar pentru puncte bonus, doar în contextul
-în care oferă funcționalități ajutătoare și doar dacă are sens.
+Un joc în care două personaje, cu abilități unice și necesare în terminarea fiecărui nivel, controlate de jucători, colaboreaza pentru a putea depăși obstacole împreună????????????????????
 
 O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie de apeluri proxy către cod generat.
 
@@ -14,7 +12,7 @@ O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie
 
 ### Tema 0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
+-  Nume proiect (poate fi schimbat ulterior)
 - [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
 
 ## Tema 1

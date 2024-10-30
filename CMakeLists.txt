@@ -54,6 +54,16 @@ add_executable(${PROJECT_NAME}
     main.cpp
     generated/src/Helper.cpp
     env_fixes.h
+        Character.h
+        Character.cpp
+        FireCharacter.h
+        FireCharacter.cpp
+        WaterCharacter.h
+        WaterCharacter.cpp
+        Obstacle.h
+        Obstacle.cpp
+        Menu.h
+        Menu.cpp
 )
 
 include(cmake/CompilerFlags.cmake)
