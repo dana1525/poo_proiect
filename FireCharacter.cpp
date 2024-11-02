@@ -2,7 +2,7 @@
 #include "FireCharacter.h"
 
 void FireCharacter::handleInput(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) //daca s-a apasat o tasta si acea tasta este Left
         move(-1.f,0.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         move(1.f,0.f);

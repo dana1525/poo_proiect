@@ -4,52 +4,54 @@
 
 #include <SFML/Graphics.hpp>
 
-//functie virtuala - permite ca o functie definita intr-o clasa de baza sa fie suprascrisa intr-o clasa derivata
-//astfel, obiectele derivate vor avea comportamente diferite cand sunt apelate prin intermediul unui pointer sau al unei referinte de tipul clasei de baza
-
 class Character {
 protected:
     ///sprite-uri
+
     sf::CircleShape shape;
     sf::Vector2f position;
-    float speed, jumpHeight;
+    float speed;
+    float jumpHeight;
     bool onGround;
 
-    float verticalSpeed = 0.0f; //viteza pe y
-    float gravity = 9.8f;  //???????constanta gravitationala
-    float jumpForce = -10.0f; //forta saritura
+    //float verticalSpeed = 0.0f; //viteza pe y
+    //float gravity = 9.8f;  //???????constanta gravitationala
+    //float jumpForce = -10.0f; //forta saritura
 
 public:
-    Character(const sf::Vector2f start_position);
+    explicit Character(sf::Vector2f start_position); //am adaugat explicit, pentru ca era un constructor cu un singur parametru si se putea crea confuzie
 
     ///constructor de copiere
     Character(const Character& other);
 
     ~Character() = default;
 
+    Character& operator=(const Character &other);
+
+    virtual void print(std::ostream& out) const;
+//functie virtuala - permite ca o functie definita intr-o clasa de baza sa fie suprascrisa intr-o clasa derivata
+//astfel, obiectele derivate vor avea comportamente diferite cand sunt apelate prin intermediul unui pointer sau al unei referinte de tipul clasei de baza
+
+    friend std::ostream& operator<<(std::ostream& out, const Character &other);
+//trebuie sa fie functie prietena pentru a putea fi folosita in afara
+
     void draw(sf::RenderWindow& window);
 
     void move(float dx, float dy); //cu ce variatie
 
-    const sf::Vector2f &getPosition() const;
+    ///const sf::Vector2f& getPosition() const;  nu cred ca am nevoie de getter? cel putin acum
 
-    sf::FloatRect getBounds() const;
+    ///sf::FloatRect getBounds() const;
 
     void checkBounds(unsigned int wWidth, unsigned int wHeight);
 
     ///bool checkCollision();
 
-    void jump();
+    ///void jump();
 
-    void applyGravity(unsigned int wHeight);
+    ///void applyGravity(unsigned int wHeight);
 
     ///void takeDamage(); ///probabil personajul si obstacolul???
-
-    Character& operator=(const Character &other);
-
-    virtual void print(std::ostream& out) const;
-
-    friend std::ostream& operator<<(std::ostream& out, const Character &other);
 
 };
 

@@ -8,7 +8,7 @@
 #include "WaterCharacter.h"
 #include "Menu.h"
 
-#include <Helper.h>
+///#include <Helper.h>
 #include "env_fixes.h"   //environment-specific fixes
 
 
@@ -16,7 +16,7 @@
 enum gameState{
     MENU,
     PLAYING,
-    PAUSE,
+    //PAUSE,
     EXIT
 };
 
@@ -35,42 +35,75 @@ int main() {
 
     Menu menu(wWidth,wHeight);
 
-    //window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(60);
 
     FireCharacter fireCharacter(sf::Vector2f(100.f,100.f));
     WaterCharacter waterCharacter(sf::Vector2f(300.f,300.f));
+    //FireCharacter c = fireCharacter;
+
+    gameState currentState = MENU; //initializare stare joc
 
     while(window.isOpen()) {
 
-        sf::Event event;
-        while(window.pollEvent(event)){
-            if(event.type == sf::Event::Closed)
+        sf::Event event = {}; //initializare eveniment
+        while(window.pollEvent(event)) {
+
+            if (event.type == sf::Event::Closed)
                 window.close();
+
+            //Logica meniu
+            if (currentState == MENU) {
+                if (event.type == sf::Event::KeyPressed) {
+                    if (event.key.code == sf::Keyboard::Up)
+                        menu.moveUp();
+                    else if (event.key.code == sf::Keyboard::Down)
+                        menu.moveDown();
+                    else if (event.key.code == sf::Keyboard::Enter) {
+                        switch (menu.getSelectedItemIndex()) {
+                            case 0: //start
+                                currentState = PLAYING;
+                                break;
+                            case 1: //niveluri
+                                std::cout << "Selecteaza nivelul\n";
+                                break;
+                            case 2: //iesire
+                                currentState = EXIT;
+                                window.close();
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        window.clear();
+
+        if(currentState == MENU)
+            menu.draw(window);
+        else
+        if(currentState == PLAYING){
+            fireCharacter.handleInput();
+            waterCharacter.handleInput();
+
+            std::cout << fireCharacter;
+            std::cout << waterCharacter;
+
+            //gravitatia
+            //fireCharacter.applyGravity(window.getSize().y);
+            //waterCharacter.applyGravity(window.getSize().y);
+
+            fireCharacter.checkBounds(wWidth,wHeight);
+            waterCharacter.checkBounds(wWidth,wHeight);
+
+            fireCharacter.draw(window);
+            //c.draw(window);
+            waterCharacter.draw(window);
         }
 
+    window.display();
 
-        std::cout << fireCharacter;
-        std::cout << waterCharacter;
+    using namespace std::chrono_literals;   ///de ce trebuie sa pastrez chestia astaaaa???????
+    std::this_thread::sleep_for(100ms);
 
-        fireCharacter.handleInput();
-        waterCharacter.handleInput();
-
-        //gravitatia
-        //fireCharacter.applyGravity(window.getSize().y);
-        //waterCharacter.applyGravity(window.getSize().y);
-
-
-        fireCharacter.checkBounds(wWidth,wHeight);
-        waterCharacter.checkBounds(wWidth,wHeight);
-
-        window.clear();
-        fireCharacter.draw(window);
-        waterCharacter.draw(window);
-        window.display();
-
-        using namespace std::chrono_literals;   ///de ce trebuie sa pastrez chestia astaaaa???????
-        std::this_thread::sleep_for(100ms);
     }
     return 0;
 }
@@ -78,7 +111,6 @@ int main() {
 
 
 //bool shouldExit = false;
-//sf::Event e{};
 //while(window.pollEvent(e)) {
 //switch(e.type) {
 //case sf::Event::Closed:
@@ -93,17 +125,3 @@ int main() {
 //if(e.key.code == sf::Keyboard::Escape)
 //shouldExit = true;
 //break;
-/////?????????????????????????????????????
-///*if(e.key.code == sf::Keyboard::Up)
-//    menu.moveUp();
-//break;
-//if(e.key.code == sf::Keyboard::Down)
-//    menu.moveDown();
-//break;
-//if(e.key.code == sf::Keyboard::Enter)
-//    switch (menu.getPressedItem()) {
-//    case 0:
-//    }*/
-//default:
-//break;
-//}}

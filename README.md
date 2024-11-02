@@ -1,9 +1,7 @@
 # Foc și Apă
 
-### Important!
-Un joc în care două personaje, cu abilități unice și necesare în terminarea fiecărui nivel, controlate de jucători, colaboreaza pentru a putea depăși obstacole împreună????????????????????
-
-O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie de apeluri proxy către cod generat.
+### Descriere
+Un joc în care două personaje, cu abilități unice și necesare în terminarea fiecărui nivel, controlate de jucători, colaborează pentru a putea depăși obstacole împreună.
 
 ### Cerințe modele de limbaj la nivel de semestru
 - [ ] minim o funcționalitate majoritar doar cu LLM
@@ -12,8 +10,8 @@ O cerință nu se consideră îndeplinită dacă este realizată doar ca o serie
 
 ### Tema 0
 
--  Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [x] Nume proiect (poate fi schimbat ulterior)
+- [x] Scurtă descriere a temei alese, ce v-ați propus să implementați
 
 ## Tema 1
 

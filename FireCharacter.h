@@ -8,20 +8,20 @@ class FireCharacter : public Character {
 private:
     sf::Color color;
 public:
-    FireCharacter(const sf::Vector2f& start_position)
+    explicit FireCharacter(const sf::Vector2f& start_position)
     : Character(start_position) {
         shape.setFillColor(sf::Color::Red);
     };
 
     void handleInput();
 
-    const bool walkOnFire() const{
-        return true;
-    };
-
-    const bool walkOnWater() const{
-        return false;
-    };
+//    static bool walkOnFire() {
+//        return true;
+//    };
+//
+//    static bool walkOnWater() {
+//        return false;
+//    };
 
     void print(std::ostream& out) const override;
 };

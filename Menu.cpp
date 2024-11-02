@@ -1,11 +1,10 @@
 
 #include "Menu.h"
 #include <iostream>
-#include <fstream>
 
-Menu::Menu(float wWidth, float wHeight)
+Menu::Menu(unsigned int wWidth, unsigned int wHeight)
 {
-    if(!myFont.loadFromFile("E://facultate//an2_sem1//poo 1//poo_proiect//Comfortaa//static//Comfortaa-Regular.ttf"))
+    if(!myFont.loadFromFile("Comfortaa//static//Comfortaa-Regular.ttf"))
     {
         ///sa fac operatorul <<
         std::cout << "eroare la încărcarea fontului";
@@ -13,20 +12,24 @@ Menu::Menu(float wWidth, float wHeight)
     }
 
     ///optiuni meniu
-    std::string items[] = {"Start","Niveluri","Ieșire"};
+    std::vector<std::string> items = {"Start","Niveluri","Iesire"};
     selectedItemIndex = 0;
 
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < (int)items.size(); i++)
     {
         sf::Text text;
         text.setFont(myFont);
         text.setString(items[i]);
         text.setCharacterSize(50);
         text.setFillColor(sf::Color(255,182,193));
-        text.setPosition(wWidth/2 - text.getGlobalBounds().width/2, wHeight/4*(i+1));
+        text.setPosition((float)wWidth/2 - text.getGlobalBounds().width/2, (float)wHeight/4*((float)i+1));
         menuItems.push_back(text);
     }
-    menuItems[0].setFillColor(sf::Color::Red); //optiunea selectata
+    if (!menuItems.empty()) {
+        menuItems[0].setFillColor(sf::Color::Red);
+    } else {
+        std::cout << "Eroare: vectorul menuItems este gol." << std::endl;
+    }
 }
 
 void Menu::draw(sf::RenderWindow &window) {
@@ -47,8 +50,14 @@ void Menu::moveDown() {
     if(selectedItemIndex + 1 < menuItems.size())
     {
         menuItems[selectedItemIndex].setFillColor(sf::Color(255,182,193));
-        selectedItemIndex--;
+        selectedItemIndex++;
         menuItems[selectedItemIndex].setFillColor(sf::Color::Red);
 
     }
 }
+
+unsigned long long Menu::getSelectedItemIndex() const{
+    return selectedItemIndex;
+}
+
+///std::ostream& operator<<(std::ostream& out, ){}

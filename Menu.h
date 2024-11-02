@@ -5,16 +5,15 @@
 #include <vector>
 
 class Menu {
-    int selectedItemIndex;
+    unsigned long long selectedItemIndex;
     std::vector<sf::Text> menuItems;
     sf::Font myFont;
 public:
-    Menu(float wWidth, float wHeight);
+    Menu(unsigned int wWidth, unsigned int wHeight);
+    unsigned long long getSelectedItemIndex() const;
     void draw(sf::RenderWindow &window);
     void moveUp();
     void moveDown();
-    int getPressedItem;
-
 };
 
 

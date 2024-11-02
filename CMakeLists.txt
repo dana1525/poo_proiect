@@ -60,8 +60,6 @@ add_executable(${PROJECT_NAME}
         FireCharacter.cpp
         WaterCharacter.h
         WaterCharacter.cpp
-        Obstacle.h
-        Obstacle.cpp
         Menu.h
         Menu.cpp
 )
