@@ -123,5 +123,5 @@ int main() {
 //case sf::Event::KeyPressed:
 //std::cout << "Received key " << (e.key.code == sf::Keyboard::X ? "X" : "(other)") << "\n";
 //if(e.key.code == sf::Keyboard::Escape)
-//shouldExit = true;
 //break;
+//shouldExit = true;
