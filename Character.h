@@ -19,7 +19,7 @@ protected:
     //float jumpForce = -10.0f; //forta saritura
 
 public:
-    explicit Character(sf::Vector2f start_position); //am adaugat explicit, pentru ca era un constructor cu un singur parametru si se putea crea confuzie
+    explicit Character(sf::Vector2f start_position);
 
     ///constructor de copiere
     Character(const Character& other);

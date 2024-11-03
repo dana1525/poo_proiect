@@ -10,9 +10,7 @@ Character::Character(sf::Vector2f start_position)
 }
 
 Character::Character(const Character &other)
-    : position(other.position), speed(other.speed), jumpHeight(other.jumpHeight), onGround(other.onGround){
-    shape = other.shape;
-}
+    : position(other.position), speed(other.speed), jumpHeight(other.jumpHeight), onGround(other.onGround), shape(other.shape){}
 
 Character& Character::operator=(const Character& other){
     ///de umblat la el cand adaug sprite-uri

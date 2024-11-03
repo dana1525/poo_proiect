@@ -38,7 +38,7 @@ void Menu::draw(sf::RenderWindow &window) {
 }
 
 void Menu::moveUp() {
-    if(selectedItemIndex - 1 >= 0)
+    if(selectedItemIndex >= 1)
     {
         menuItems[selectedItemIndex].setFillColor(sf::Color(255,182,193));
         selectedItemIndex--;
