@@ -4,7 +4,7 @@
 
 Menu::Menu(unsigned int wWidth, unsigned int wHeight)
 {
-    if(!myFont.loadFromFile("Comfortaa//static//Comfortaa-Regular.ttf"))
+    if(!myFont.loadFromFile("E://facultate//an2_sem1//poo 1//poo_proiect//fonts//Comfortaa-VariableFont_wght.ttf"))
     {
         ///sa fac operatorul <<
         std::cout << "eroare la încărcarea fontului";
