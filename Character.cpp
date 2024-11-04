@@ -18,11 +18,14 @@ Character& Character::operator=(const Character& other){
     ///de umblat la el cand adaug sprite-uri
     if(this != &other)
     {
+        shape = other.shape;
         position = other.position;
         speed = other.speed;
         jumpHeight = other.jumpHeight;
         onGround = other.onGround;
-        shape = other.shape;
+        yvelocity = other.yvelocity;
+        gravity = other.gravity;
+        jumpForce = other.jumpForce;
     }
     return *this;
 }
