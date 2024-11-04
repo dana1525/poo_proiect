@@ -4,7 +4,7 @@
 
 Character::Character(sf::Vector2f start_position)
     : position(start_position),
-    speed(25.f), jumpHeight(10.f), onGround(true){
+    speed(25.f), jumpHeight(10.f), onGround(true), yvelocity(0.0f), gravity(50.0f), jumpForce(50.0f) {
     shape.setRadius(15.f);
     shape.setPosition(position);
 }
@@ -67,27 +67,27 @@ void Character::checkBounds(unsigned int wWidth, unsigned int wHeight){
     shape.setPosition(position);
 }
 
-/*void Character::jump(){
+void Character::jump(){
     if(onGround)
     {
-        verticalSpeed = jumpForce;
+        yvelocity = -jumpForce;
         onGround = false;
     }
 }
-*/
-/*
-void Character::applyGravity(unsigned int wHeight) {
+
+
+void Character::applyGravity(unsigned int wHeight, float deltaSec) {
     if(!onGround) //aplic gravitatia daca nu este pe sol
     {
-        verticalSpeed += gravity; //maresc viteza verticala cu gravitatia
-        position.y += verticalSpeed;  ////??????
+        yvelocity += gravity * deltaSec; //maresc viteza verticala cu gravitatia
+        position.y += yvelocity * deltaSec;  ////??????
     }
     if(position.y + shape.getRadius()*2 >= wHeight)
     {
         position.y = wHeight - shape.getRadius()*2;
-        verticalSpeed = 0.0f;
+        yvelocity = 0.0f;
         onGround = true;
     }
     shape.setPosition(position);
 }
-*/
+

@@ -62,6 +62,8 @@ add_executable(${PROJECT_NAME}
         WaterCharacter.cpp
         Menu.h
         Menu.cpp
+        Obstacle.h
+        Obstacle.cpp
 )
 
 include(cmake/CompilerFlags.cmake)
