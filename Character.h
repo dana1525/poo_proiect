@@ -12,11 +12,11 @@ protected:
     sf::Vector2f position;
     float speed;
     float jumpHeight;
-    bool onGround;
+    bool onGround = true;
 
-    //float verticalSpeed = 0.0f; //viteza pe y
-    //float gravity = 9.8f;  //???????constanta gravitationala
-    //float jumpForce = -10.0f; //forta saritura
+    float yvelocity; //viteza pe y
+    float gravity;  //???????constanta gravitationala
+    float jumpForce; //forta saritura
 
 public:
     explicit Character(sf::Vector2f start_position);
@@ -47,9 +47,11 @@ public:
 
     ///bool checkCollision();
 
-    ///void jump();
+    void jump();
 
-    ///void applyGravity(unsigned int wHeight);
+    void applyGravity(unsigned int wHeight, float deltaSec);
+
+    ///virtual bool isAffectedByObstacle(const std::string& type) const override;
 
     ///void takeDamage(); ///probabil personajul si obstacolul???
 

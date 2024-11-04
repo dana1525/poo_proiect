@@ -43,9 +43,13 @@ int main() {
 
     gameState currentState = MENU; //initializare stare joc
 
+    sf::Clock clock;
+
     while(window.isOpen()) {
 
         sf::Event event = {}; //initializare eveniment
+        sf::Time deltaTime = clock.restart();
+        float deltaSec = deltaTime.asSeconds();
         while(window.pollEvent(event)) {
 
             if (event.type == sf::Event::Closed)
@@ -88,8 +92,8 @@ int main() {
             std::cout << waterCharacter;
 
             //gravitatia
-            //fireCharacter.applyGravity(window.getSize().y);
-            //waterCharacter.applyGravity(window.getSize().y);
+            fireCharacter.applyGravity(window.getSize().y, deltaSec*3);  //?????
+            waterCharacter.applyGravity(window.getSize().y, deltaSec*3);
 
             fireCharacter.checkBounds(wWidth,wHeight);
             waterCharacter.checkBounds(wWidth,wHeight);

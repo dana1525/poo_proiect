@@ -3,14 +3,16 @@
 #include <SFML/Graphics.hpp>
 
 Character::Character(sf::Vector2f start_position)
-    : position(start_position),
-    speed(25.f), jumpHeight(10.f), onGround(true){
+        : position(start_position), speed(25.f), jumpHeight(10.f),
+          onGround(true), yvelocity(0.0f), gravity(50.0f), jumpForce(50.0f) {
     shape.setRadius(15.f);
     shape.setPosition(position);
 }
 
 Character::Character(const Character &other)
-    : position(other.position), speed(other.speed), jumpHeight(other.jumpHeight), onGround(other.onGround), shape(other.shape){}
+        : shape(other.shape), position(other.position),
+        speed(other.speed), jumpHeight(other.jumpHeight),
+        onGround(other.onGround), yvelocity(other.yvelocity), gravity(other.gravity), jumpForce(other.jumpForce){}
 
 Character& Character::operator=(const Character& other){
     ///de umblat la el cand adaug sprite-uri
@@ -65,27 +67,27 @@ void Character::checkBounds(unsigned int wWidth, unsigned int wHeight){
     shape.setPosition(position);
 }
 
-/*void Character::jump(){
+void Character::jump(){
     if(onGround)
     {
-        verticalSpeed = jumpForce;
+        yvelocity = -jumpForce;
         onGround = false;
     }
 }
-*/
-/*
-void Character::applyGravity(unsigned int wHeight) {
-    if(!onGround) //aplic gravitatia daca nu este pe sol
+
+
+void Character::applyGravity(unsigned int wHeight, float deltaSec) {
+    if(!onGround)
     {
-        verticalSpeed += gravity; //maresc viteza verticala cu gravitatia
-        position.y += verticalSpeed;  ////??????
+        yvelocity += gravity * deltaSec; //maresc viteza verticala cu gravitatia
+        position.y += yvelocity * deltaSec;
     }
-    if(position.y + shape.getRadius()*2 >= wHeight)
+    if(position.y + shape.getRadius()*2 >= (float)wHeight)
     {
-        position.y = wHeight - shape.getRadius()*2;
-        verticalSpeed = 0.0f;
+        position.y = (float)wHeight - shape.getRadius()*2;
+        yvelocity = 0.0f;
         onGround = true;
     }
     shape.setPosition(position);
 }
-*/
+

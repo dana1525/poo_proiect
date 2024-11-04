@@ -9,7 +9,7 @@ private:
     sf::Color color;
 public:
     explicit FireCharacter(const sf::Vector2f& start_position)
-    : Character(start_position) {
+            : Character(start_position) {
         shape.setFillColor(sf::Color::Red);
     };
 
