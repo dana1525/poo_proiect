@@ -82,7 +82,7 @@ void Character::jump(){
 void Character::applyGravity(unsigned int wHeight, float deltaSec) {
     if(!onGround)
     {
-        yvelocity += gravity * deltaSec; //maresc viteza verticala cu gravitatia
+        yvelocity += gravity * deltaSec; //maresc viteza verticala cu gravitatia * variatia timpului
         position.y += yvelocity * deltaSec;
     }
     if(position.y + shape.getRadius()*2 >= (float)wHeight)
