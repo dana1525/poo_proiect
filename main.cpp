@@ -4,9 +4,9 @@
 #include <thread>
 
 #include <SFML/Graphics.hpp>
-#include "FireCharacter.h"
-#include "WaterCharacter.h"
-#include "Menu.h"
+#include "headers/FireCharacter.h"
+#include "headers/WaterCharacter.h"
+#include "headers/Menu.h"
 
 ///#include <Helper.h>
 #include "env_fixes.h"   //environment-specific fixes

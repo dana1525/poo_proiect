@@ -1,5 +1,6 @@
 
-#include "FireCharacter.h"
+#include "../headers/FireCharacter.h"
+#include <SFML/Graphics.hpp>
 
 void FireCharacter::handleInput(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) //daca s-a apasat o tasta si acea tasta este Left

@@ -1,5 +1,6 @@
 
-#include "WaterCharacter.h"
+#include "../headers/WaterCharacter.h"
+#include <SFML/Graphics.hpp>
 
 void WaterCharacter::handleInput(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))

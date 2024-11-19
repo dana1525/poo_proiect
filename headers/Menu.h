@@ -1,7 +1,7 @@
 
 #ifndef OOP_MENU_H
 #define OOP_MENU_H
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 class Menu {

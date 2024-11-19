@@ -1,5 +1,6 @@
 /*
 #include "Obstacle.h"
+ #include <SFML/Graphics.hpp>
 
 
 Obstacle::Obstacle(sf::Vector2f position, float width, float height, const std::string& type) : position(position), type(type) {

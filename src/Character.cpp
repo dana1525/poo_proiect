@@ -1,5 +1,5 @@
 
-#include "Character.h"
+#include "../headers/Character.h"
 #include <SFML/Graphics.hpp>
 
 Character::Character(sf::Vector2f start_position)
