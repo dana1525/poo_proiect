@@ -1,6 +1,7 @@
 
 #ifndef OOP_MENU_H
 #define OOP_MENU_H
+
 #include <SFML/Graphics.hpp>
 #include <vector>
 
@@ -10,10 +11,16 @@ class Menu {
     sf::Font myFont;
 public:
     Menu(unsigned int wWidth, unsigned int wHeight);
+
     unsigned long long getSelectedItemIndex() const;
+
     void draw(sf::RenderWindow &window);
+
     void moveUp();
+
     void moveDown();
+
+    void run(const sf::Event &event);
 };
 
 

@@ -1,6 +1,7 @@
 
 #ifndef OOP_WATERCHARACTER_H
 #define OOP_WATERCHARACTER_H
+
 #include <SFML/Graphics.hpp>
 #include "Character.h"
 
@@ -8,22 +9,18 @@ class WaterCharacter : public Character {
 private:
     sf::Color color;
 public:
-    explicit WaterCharacter(const sf::Vector2f& start_position)
-            : Character(start_position) {
-        shape.setFillColor(sf::Color::Blue);
+    explicit WaterCharacter(const size_t &id, const sf::Vector2f &position)
+            : Character(EntityTag::WaterCharacter, id, position) {
+        m_shape.setFillColor(sf::Color::Blue);
     };
 
-    void handleInput();
+    void handleInput() override;
 
-//    static bool walkOnFire() {
-//        return false;
-//    };
+//    void walkOnFire();
 //
-//    static bool walkOnWater() {
-//        return true;
-//    };
+//    void walkOnWater();
 
-    void print(std::ostream& out) const override;
+    ///void print(std::ostream& out) const override;
 };
 
 

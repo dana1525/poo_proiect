@@ -6,17 +6,18 @@
 #include <SFML/Graphics.hpp>
 #include "Character.h"
 
-/*class Obstacle {
-    sf::RectangleShape ob_shape;
-    sf::Vector2f position;
-    std::string type;
+
+class Obstacle : public Entity {
 public:
-    Obstacle(sf::Vector2f position, float width, float height, const std::string& type);
-    ~Obstacle() = default;
-    friend std::ostream& operator<<(std::ostream& out, const Obstacle& ob);
-    void draw(sf::RenderWindow& window) const;
-    ///bool isHarmful(const Character& character) const;
+    Obstacle(const EntityTag &tag, const size_t &id, const sf::Vector2f &position);
+
+    ~Obstacle() override = default;
+
+    ///friend std::ostream& operator<<(std::ostream& out, const Obstacle& ob);
+
+
+    //void destroyIfHarmful(Entity &entity);
 };
-*/
+
 
 #endif //OOP_OBSTACLE_H

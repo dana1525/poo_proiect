@@ -2,40 +2,39 @@
 #include "../headers/Character.h"
 #include <SFML/Graphics.hpp>
 
-Character::Character(sf::Vector2f start_position)
-        : position(start_position), speed(25.f), jumpHeight(10.f),
-          onGround(true), yvelocity(0.0f), gravity(50.0f), jumpForce(50.0f) {
-    shape.setRadius(15.f);
-    shape.setPosition(position);
+Character::Character(const EntityTag &tag, const size_t &id, const sf::Vector2f &position)
+        : Entity(tag, id, position), m_speed(25.f), m_jumpHeight(10.f), m_jumpForce(50.0f) {
+    m_shape.setRadius(15.f);
+    m_shape.setPosition(position);
 }
 
 Character::Character(const Character &other)
-        : shape(other.shape), position(other.position),
-        speed(other.speed), jumpHeight(other.jumpHeight),
-        onGround(other.onGround), yvelocity(other.yvelocity), gravity(other.gravity), jumpForce(other.jumpForce){}
+        : Entity(other.m_tag, other.m_id, other.m_position),
+          m_speed(other.m_speed), m_jumpHeight(other.m_jumpHeight), m_jumpForce(other.m_jumpForce) {}
 
-Character& Character::operator=(const Character& other){
-    ///de umblat la el cand adaug sprite-uri
-    if(this != &other)
-    {
-        shape = other.shape;
-        position = other.position;
-        speed = other.speed;
-        jumpHeight = other.jumpHeight;
-        onGround = other.onGround;
-        yvelocity = other.yvelocity;
-        gravity = other.gravity;
-        jumpForce = other.jumpForce;
+Character &Character::operator=(const Character &other) {
+    ///sprite-uri
+    if (this != &other) {
+        m_tag = other.m_tag;
+        m_position = other.m_position;
+        m_onGround = other.m_onGround;
+        m_yvelocity = other.m_yvelocity;
+        m_gravity = other.m_gravity;
+        m_alive = other.m_alive;
+        m_shape = other.m_shape;
+        m_speed = other.m_speed;
+        m_jumpHeight = other.m_jumpHeight;
+        m_jumpForce = other.m_jumpForce;
     }
     return *this;
 }
 
-void Character::print(std::ostream& out) const{
-    out << "Position: (" << position.x << ", " << position.y << ")\n";
-    out << "Speed: " << speed << "\n";
+void Character::print(std::ostream &out) const {
+    Entity::print(out);
+    out << "Speed: " << m_speed << "\n";
 }
 
-std::ostream& operator<<(std::ostream& out, const Character& character){
+std::ostream &operator<<(std::ostream &out, const Character &character) {
     character.print(out);
     return out;
 }
@@ -44,53 +43,23 @@ std::ostream& operator<<(std::ostream& out, const Character& character){
 ///    return position;
 ///}
 
-void Character::draw(sf::RenderWindow& window){
-    window.draw(shape);
+
+void Character::move(float dx, float dy) {
+    m_position.x += dx * m_speed;
+    m_position.y += dy * m_speed;
+    m_shape.setPosition(m_position);
 }
 
-void Character::move(float dx, float dy){
-    position.x += dx * speed;
-    position.y += dy * speed;
-    shape.setPosition(position);
-}
-
-void Character::checkBounds(unsigned int wWidth, unsigned int wHeight){
-    sf::FloatRect bounds = shape.getGlobalBounds();
-    if(bounds.left < 0)
-        position.x = 0;
-    else
-        if(bounds.left+bounds.width > (float)wWidth)
-            position.x = (float)wWidth - bounds.width;
-    if(bounds.top < 0)
-        position.y = 0;
-    else
-        if(bounds.top+bounds.height > (float)wHeight)
-            position.y = (float)wHeight - bounds.height;
-
-    shape.setPosition(position);
-}
-
-void Character::jump(){
-    if(onGround)
-    {
-        yvelocity = -jumpForce;
-        onGround = false;
+void Character::jump() {
+    if (m_onGround) {
+        m_yvelocity = -m_jumpForce;
+        m_onGround = false;
     }
 }
 
-
-void Character::applyGravity(unsigned int wHeight, float deltaSec) {
-    if(!onGround)
-    {
-        yvelocity += gravity * deltaSec; //maresc viteza verticala cu gravitatia * variatia timpului
-        position.y += yvelocity * deltaSec;
-    }
-    if(position.y + shape.getRadius()*2 >= (float)wHeight)
-    {
-        position.y = (float)wHeight - shape.getRadius()*2;
-        yvelocity = 0.0f;
-        onGround = true;
-    }
-    shape.setPosition(position);
+void Character::controller() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        jump();
+    handleInput();
 }
 
