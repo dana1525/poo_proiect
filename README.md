@@ -36,7 +36,7 @@ colaborează pentru a putea depăși obstacole împreună.
     - crearea de obiecte și apelarea tuturor funcțiilor membru publice în main
     - vor fi adăugate în fișierul `tastatura.txt` DOAR exemple de date de intrare de la tastatură (dacă există); dacă
       aveți nevoie de date din fișiere, creați alte fișiere separat
-- [ ] tag de `git`: de exemplu `v0.1`
+- [x] tag de `git`: de exemplu `v0.1`
 - [x] serviciu de integrare continuă (CI); exemplu: GitHub Actions
 
 ## Tema 2
@@ -57,10 +57,10 @@ colaborează pentru a putea depăși obstacole împreună.
         - [ ] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
         - [x] `dynamic_cast`/`std::dynamic_pointer_cast` pentru downcast cu sens
         - [x] smart pointers (recomandat, opțional)
-- [ ] excepții
-    - [ ] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim **3** clase pentru erori
+- [x] excepții
+    - [x] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim **3** clase pentru erori
       specifice
-    - [ ] utilizare cu sens: de exemplu, `throw` în constructor (sau funcție care întoarce un obiect), `try`/`catch`
+    - [x] utilizare cu sens: de exemplu, `throw` în constructor (sau funcție care întoarce un obiect), `try`/`catch`
       în `main`
     - această ierarhie va fi complet independentă de ierarhia cu funcții virtuale
 - [ ] funcții și atribute `static`

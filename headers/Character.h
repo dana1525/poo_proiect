@@ -8,7 +8,7 @@
 
 class Character : public Entity {
 protected:
-    ///sprite-uri
+    ///sprites
 
     float m_speed;
     float m_jumpHeight;
@@ -17,7 +17,6 @@ protected:
 public:
     Character(const EntityTag &tag, const size_t &id, const sf::Vector2f &position);
 
-    ///constructor de copiere
     Character(const Character &other);
 
     ~Character() override = default;
@@ -30,7 +29,7 @@ public:
 
 
     friend std::ostream &operator<<(std::ostream &out, const Character &other);
-// Needs to be a friend function to be used outside the class.
+    // Needs to be a friend function to be used outside the class.
 
     void controller();
 

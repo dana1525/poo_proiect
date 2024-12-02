@@ -1,19 +1,25 @@
 
 #include "../headers/Game.h"
-
+#include "../headers/GameException.h"
+#include "../headers/Pickup.h"
 
 void Game::initialize() {
 
     /*if (!m_font.loadFromFile("..//Comfortaa/Comfortaa-VariableFont_wght.ttf")) {
-        std::cout << "eroare la încărcarea fontului";
+        std::cout << "error loading the font";
         return;
     }*/
 
     //read something from config file????
-    m_window.create(sf::VideoMode({wWidth, wHeight}), "Fire and Water", sf::Style::Default);
-
-    m_window.setFramerateLimit(60);
-
+    try {
+        m_window.create(sf::VideoMode({wWidth, wHeight}), "Fire and Water", sf::Style::Default);
+        if (!m_window.isOpen())
+            throw InitializationException("Failed to create the game window");
+        m_window.setFramerateLimit(60);
+    } catch (const InitializationException &e) {
+        std::cerr << "Error during initialization: " << e.what() << std::endl;
+        throw; //in main
+    }
 
 }
 
@@ -24,12 +30,13 @@ void Game::run() {
     FireCharacter fireCharacter(0, sf::Vector2f(100.f, 100.f));
     WaterCharacter waterCharacter(1, sf::Vector2f(300.f, 300.f));
     Obstacle ob(EntityTag::SlimeObstacle, 2, sf::Vector2f(250.f, 250.f));
+    Pickup p(3, sf::Vector2f(600.f, 600.f));
     //FireCharacter c = fireCharacter;
 
     m_entities.addEntity(fireCharacter.getMTag(), fireCharacter.getMPosition());
     m_entities.addEntity(waterCharacter.getMTag(), waterCharacter.getMPosition());
     m_entities.addEntity(ob.getMTag(), ob.getMPosition());
-
+    m_entities.addEntity(p.getMTag(), p.getMPosition());
 
     sf::Clock clock;
 
@@ -43,7 +50,7 @@ void Game::run() {
             if (event.type == sf::Event::Closed)
                 m_window.close();
 
-            //Logica meniu
+            //Menu
             if (m_currentState == GameState::MENU) {
                 menu.run(event);
                 if (event.key.code == sf::Keyboard::Enter) {
@@ -51,11 +58,11 @@ void Game::run() {
                         case 0: //start
                             m_currentState = GameState::PLAYING;
                             break;
-                        case 1: //niveluri
-                            std::cout << "Selecteaza nivelul\n";
+                        case 1: //levels
+                            std::cout << "Select the level\n";
                             m_window.close();//to do
                             break;
-                        case 2: //iesire
+                        case 2: //exit
                             m_currentState = GameState::EXIT;
                             m_window.close();
                             break;
@@ -79,6 +86,7 @@ void Game::run() {
             sUserInput();
             sUpdate(deltaSec);
             sRender();
+            sCollision();
         }
 
 
@@ -108,7 +116,9 @@ void Game::sRender() {
 
     //players' positions - in every level a different one
     for (auto &e: m_entities.getEntities())
-        e->draw(m_window);
+        if (auto p = std::dynamic_pointer_cast<Pickup>(e))
+            p->draw(m_window);
+        else e->draw(m_window);
 
     m_window.display();
 }
@@ -123,9 +133,19 @@ void Game::sUserInput() {
 
 void Game::sUpdate(float deltaSec) {
     for (auto &e: m_entities.getEntities()) {//to verify later if it's not a diamond?
-        e->applyGravity(m_window.getSize().y, deltaSec * 3);
-        e->checkBounds(wWidth, wHeight);
+        try {
+            e->applyGravity(m_window.getSize().y, deltaSec * 3);
+            e->checkBounds(wWidth, wHeight);
+        } catch (...) {
+            throw LogicException("Entity out of bounds or gravity error");
+        }
     }
 }
 
-//void Game::sCollision() {}
+void Game::sCollision() {
+    for (auto &e: m_entities.getEntities()) {
+        if (auto p = std::dynamic_pointer_cast<Pickup>(e))
+            for (auto &other: m_entities.getEntities())
+                p->collision(*other);
+    }
+}

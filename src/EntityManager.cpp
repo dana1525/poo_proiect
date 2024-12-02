@@ -1,14 +1,10 @@
 
 #include "../headers/EntityManager.h"
-#include "../headers/Entity.h"
-#include "../headers/Character.h"
 #include "../headers/FireCharacter.h"
 #include "../headers/WaterCharacter.h"
 #include "../headers/Obstacle.h"
-#include <iostream>
+#include "../headers/Pickup.h"
 #include <memory>
-#include <algorithm>
-#include <utility>
 
 size_t EntityManager::m_totalEntities = 0;
 
@@ -27,6 +23,10 @@ std::shared_ptr<Entity> EntityManager::addEntity(EntityTag tag, const sf::Vector
         auto e = std::make_shared<Obstacle>(tag, m_totalEntities++, position);
         m_toAdd.push_back(e);
         return e;
+    } else if (tag == EntityTag::Pickup) {
+        auto e = std::make_shared<Pickup>(m_totalEntities, position);
+        m_toAdd.push_back(e);
+        return e;
     } else {
         auto e = std::make_shared<Entity>(tag, m_totalEntities++, position);
         m_toAdd.push_back(e);
@@ -38,7 +38,7 @@ void EntityManager::update() {
     //also add to the vector inside the map, with the tag as a key
     for (const auto &e: m_toAdd) {
         m_entities.push_back(e);
-        ////?????????????m_entityMap[e->getMTag()].push_back(e);
+        ////??m_entityMap[e->getMTag()].push_back(e);
     }
     ///remove entity from m_entities
     for (auto e = m_entities.begin(); e != m_entities.end();) {
@@ -46,8 +46,7 @@ void EntityManager::update() {
             e = m_entities.erase(e);
         else e++;
     }
-    ///removes from the beginning to the end of the vector entities
-    ///?????????????
+    ///removes from the beginning to the end of the vector
     /*for (auto &[tag, entities]: m_entityMap) {
         entities.erase(
                 std::remove_if(entities.begin(), entities.end(),

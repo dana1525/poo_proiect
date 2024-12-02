@@ -5,13 +5,12 @@
 
 Menu::Menu(unsigned int wWidth, unsigned int wHeight) {
     if (!myFont.loadFromFile("..//Comfortaa/Comfortaa-VariableFont_wght.ttf")) {
-        ///sa fac operatorul <<
-        std::cout << "eroare la încărcarea fontului";
+        std::cout << "erorr loading the font";
         return;
     }
 
     ///optiuni meniu
-    std::vector<std::string> items = {"Start", "Niveluri", "Iesire"};
+    std::vector<std::string> items = {"Start", "Levels", "Exit"};
     selectedItemIndex = 0;
 
     for (int i = 0; i < (int) items.size(); i++) {
@@ -26,7 +25,7 @@ Menu::Menu(unsigned int wWidth, unsigned int wHeight) {
     if (!menuItems.empty()) {
         menuItems[0].setFillColor(sf::Color::Red);
     } else {
-        std::cout << "Eroare: vectorul menuItems este gol." << std::endl;
+        std::cout << "Error: menuItems is empty." << std::endl;
     }
 }
 

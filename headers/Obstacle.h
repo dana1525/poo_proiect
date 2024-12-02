@@ -16,7 +16,7 @@ public:
     ///friend std::ostream& operator<<(std::ostream& out, const Obstacle& ob);
 
 
-    //void destroyIfHarmful(Entity &entity);
+    void destroyIfHarmful(Entity &entity);
 };
 
 

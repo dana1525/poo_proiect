@@ -71,6 +71,9 @@ add_executable(${PROJECT_NAME}
         headers/Game.h
         src/Game.cpp
         headers/Enums.h
+        headers/GameException.h
+        headers/Pickup.h
+        src/Pickup.cpp
 )
 
 include(cmake/CompilerFlags.cmake)

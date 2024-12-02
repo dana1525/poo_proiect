@@ -22,7 +22,7 @@ class Game {
 //    int m_currentFrame = 0;
 //    bool m_paused = false;
 //    bool m_running = true;
-    GameState m_currentState = GameState::MENU; //initializare stare joc
+    GameState m_currentState = GameState::MENU; //initialize game state
     std::shared_ptr<Entity> m_player;
 
     void initialize();
@@ -38,7 +38,7 @@ class Game {
 
     void sRender();
 
-    //void sCollision();
+    void sCollision();
 
 public:
     Game() = default;

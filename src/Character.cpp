@@ -13,14 +13,10 @@ Character::Character(const Character &other)
           m_speed(other.m_speed), m_jumpHeight(other.m_jumpHeight), m_jumpForce(other.m_jumpForce) {}
 
 Character &Character::operator=(const Character &other) {
-    ///sprite-uri
+    ///sprites
     if (this != &other) {
+        Entity::operator=(other);
         m_tag = other.m_tag;
-        m_position = other.m_position;
-        m_onGround = other.m_onGround;
-        m_yvelocity = other.m_yvelocity;
-        m_gravity = other.m_gravity;
-        m_alive = other.m_alive;
         m_shape = other.m_shape;
         m_speed = other.m_speed;
         m_jumpHeight = other.m_jumpHeight;
@@ -38,11 +34,6 @@ std::ostream &operator<<(std::ostream &out, const Character &character) {
     character.print(out);
     return out;
 }
-
-///const sf::Vector2f& Character::getPosition() const {
-///    return position;
-///}
-
 
 void Character::move(float dx, float dy) {
     m_position.x += dx * m_speed;
@@ -62,4 +53,3 @@ void Character::controller() {
         jump();
     handleInput();
 }
-

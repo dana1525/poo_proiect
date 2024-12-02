@@ -24,9 +24,10 @@ void Entity::draw(sf::RenderWindow &window) {
     window.draw(m_shape);
 }
 
-//void Entity::destroy() {
-//    m_alive = false;
-//}
+void Entity::destroy() {
+    if (m_alive)
+        m_alive = false;
+}
 
 void Entity::applyGravity(unsigned int wHeight, float deltaSec) {
     if (!m_onGround) {
@@ -86,4 +87,8 @@ void Entity::print(std::ostream &out) const {
 std::ostream &operator<<(std::ostream &out, const Entity &other) {
     other.print(out);
     return out;
+}
+
+sf::FloatRect Entity::getBounds() const {
+    return m_shape.getGlobalBounds();
 }
