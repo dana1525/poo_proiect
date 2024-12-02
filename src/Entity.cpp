@@ -3,9 +3,9 @@
 
 Entity::Entity(const EntityTag &tag, const size_t &id, const sf::Vector2f &position)
         : m_tag(tag), m_id(id), m_position(position) {
-    m_shape.setRadius(20.f);  // set the radius of the shape
-    m_shape.setFillColor(sf::Color::Green);  // add color for visibility
-    m_shape.setPosition(position);  // set the position
+    m_shape.setSize({40.f, 20.f});
+    m_shape.setFillColor(sf::Color::Green);
+    m_shape.setPosition(position);
 }
 
 EntityTag Entity::getMTag() const {
@@ -33,8 +33,8 @@ void Entity::applyGravity(unsigned int wHeight, float deltaSec) {
         m_yvelocity += m_gravity * deltaSec;
         m_position.y += m_yvelocity * deltaSec;
     }
-    if (m_position.y + m_shape.getRadius() * 2 >= (float) wHeight) {
-        m_position.y = (float) wHeight - m_shape.getRadius() * 2;
+    if (m_position.y + m_shape.getSize().y >= (float) wHeight) {
+        m_position.y = (float) wHeight - m_shape.getSize().y;
         m_yvelocity = 0.0f;
         m_onGround = true;
     }

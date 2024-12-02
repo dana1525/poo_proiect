@@ -3,8 +3,8 @@
 
 Pickup::Pickup(const size_t &id, const sf::Vector2f &position)
         : Entity(EntityTag::Pickup, id, position), m_collected(false) {
-    m_shape.setRadius(5.f);
-    m_shape.setPointCount(4);
+    m_shape.setSize({20.f, 20.f});
+    //m_shape.setPointCount(4);
     m_shape.setFillColor(sf::Color::Magenta);
 }
 

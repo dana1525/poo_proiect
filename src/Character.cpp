@@ -4,7 +4,8 @@
 
 Character::Character(const EntityTag &tag, const size_t &id, const sf::Vector2f &position)
         : Entity(tag, id, position), m_speed(25.f), m_jumpHeight(10.f), m_jumpForce(50.0f) {
-    m_shape.setRadius(15.f);
+    //m_shape.setRadius(15.f);
+    m_shape.setSize({20.f, 30.f});
     m_shape.setPosition(position);
 }
 

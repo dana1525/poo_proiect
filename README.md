@@ -1,9 +1,9 @@
-# Foc și Apă
+# Fire and Water
 
-### Descriere
+### Description
 
-Un joc în care două personaje, cu abilități unice și necesare în terminarea fiecărui nivel, controlate de jucători,
-colaborează pentru a putea depăși obstacole împreună.
+A game where two player-controlled characters with unique abilities necessary to complete each level try
+to overcome obstacles along their way.
 
 ### Cerințe modele de limbaj la nivel de semestru
 

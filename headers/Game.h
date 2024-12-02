@@ -15,6 +15,7 @@
 
 class Game {
     sf::RenderWindow m_window;
+    sf::View m_view;
     EntityManager m_entities;
     unsigned int wWidth = 800, wHeight = 700;
     sf::Font m_font;
@@ -24,6 +25,10 @@ class Game {
 //    bool m_running = true;
     GameState m_currentState = GameState::MENU; //initialize game state
     std::shared_ptr<Entity> m_player;
+
+    void setView();
+
+    void resizeWindow();
 
     /**
     * @brief Initializes the game systems and resources.

@@ -25,7 +25,7 @@ public:
      * @brief Destroys the entity if there was an interaction with a harmful obstacle.
      * @param entity The entity interacting with the obstacle.
      */
-    //void destroyIfHarmful(Entity &entity); //should be changed to a character??
+    void destroyIfHarmful(Entity &entity); //should be changed to a character??
 };
 
 

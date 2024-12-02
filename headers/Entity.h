@@ -19,7 +19,7 @@ class Entity {
 protected:
     EntityTag m_tag = EntityTag::Default;  ///< The type/category of the entity.
     size_t m_id = 0;                       ///< Unique identifier for the entity.
-    sf::CircleShape m_shape;               ///< SFML shape used to represent the entity visually.
+    sf::RectangleShape m_shape;               ///< SFML shape used to represent the entity visually.
     sf::Vector2f m_position;               ///< Position of the entity in the game.
     bool m_onGround = false;               ///< Attribute indicating if the entity is currently on the ground.
     float m_yvelocity = 0.0f;              ///< Vertical velocity of the entity (used for gravity).

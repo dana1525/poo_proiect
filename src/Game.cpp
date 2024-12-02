@@ -3,6 +3,11 @@
 #include "../headers/GameException.h"
 #include "../headers/Pickup.h"
 
+//void Game::resizeWindow() {
+//    float ratio = static_cast<float>(m_window.getSize().x) / static_cast<float>(m_window.getSize().y);
+//
+//}
+
 void Game::initialize() {
 
     /*if (!m_font.loadFromFile("..//Comfortaa/Comfortaa-VariableFont_wght.ttf")) {
@@ -144,8 +149,16 @@ void Game::sUpdate(float deltaSec) {
 
 void Game::sCollision() {
     for (auto &e: m_entities.getEntities()) {
-        if (auto p = std::dynamic_pointer_cast<Pickup>(e))
-            for (auto &other: m_entities.getEntities())
-                p->collision(*other);
+        if (auto p = std::dynamic_pointer_cast<Pickup>(e)) {
+            for (auto &other: m_entities.getEntities()) {
+                if (e != other)
+                    p->collision(*other);
+            }
+        } else if (auto o = std::dynamic_pointer_cast<Obstacle>(e)) {
+            for (auto &other: m_entities.getEntities()) {
+                if (e != other)
+                    o->destroyIfHarmful(*other);
+            }
+        }
     }
 }
