@@ -11,7 +11,7 @@ Pickup::Pickup(const size_t &id, const sf::Vector2f &position)
 void Pickup::collect() {
     if (!m_collected) {
         m_collected = true;
-        m_alive = false;
+        destroy();
     }
 }
 
@@ -20,7 +20,7 @@ void Pickup::draw(sf::RenderWindow &window) {
         window.draw(m_shape);
 }
 
-void Pickup::collision(Entity &entity) {
+void Pickup::collision(const Entity &entity) {
     if (entity.getMTag() == EntityTag::FireCharacter ||
         entity.getMTag() == EntityTag::WaterCharacter)
         if (entity.getBounds().intersects(this->getBounds()))

@@ -3,7 +3,6 @@
 #include <chrono>
 #include "headers/Game.h"
 #include "headers/GameException.h"
-#include "env_fixes.h"   //environment-specific fixes
 
 int main() {
 

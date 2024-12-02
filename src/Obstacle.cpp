@@ -16,16 +16,16 @@ Obstacle::Obstacle(const EntityTag &tag, const size_t &id, const sf::Vector2f &p
 }
 
 
-void Obstacle::destroyIfHarmful(Entity &entity) {
-    if (m_tag == EntityTag::WaterObstacle && entity.getMTag() == EntityTag::FireCharacter) {
-        entity.destroy();
-        //menu window or restart the game?
-    }
-    if (m_tag == EntityTag::FireObstacle && entity.getMTag() == EntityTag::WaterCharacter) {
-        entity.destroy();
-    }
-    if (m_tag == EntityTag::SlimeObstacle &&
-        ((entity.getMTag() == EntityTag::FireCharacter) || (entity.getMTag() == EntityTag::WaterCharacter))) {
-        entity.destroy();
-    }
-}
+//void Obstacle::destroyIfHarmful(Entity &entity) {
+//    if (m_tag == EntityTag::WaterObstacle && entity.getMTag() == EntityTag::FireCharacter) {
+//        entity.destroy();
+//        //menu window or restart the game?
+//    }
+//    if (m_tag == EntityTag::FireObstacle && entity.getMTag() == EntityTag::WaterCharacter) {
+//        entity.destroy();
+//    }
+//    if (m_tag == EntityTag::SlimeObstacle &&
+//        ((entity.getMTag() == EntityTag::FireCharacter) || (entity.getMTag() == EntityTag::WaterCharacter))) {
+//        entity.destroy();
+//    }
+//}

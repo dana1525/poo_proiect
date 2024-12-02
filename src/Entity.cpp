@@ -25,8 +25,7 @@ void Entity::draw(sf::RenderWindow &window) {
 }
 
 void Entity::destroy() {
-    if (m_alive)
-        m_alive = false;
+    m_alive = false;
 }
 
 void Entity::applyGravity(unsigned int wHeight, float deltaSec) {

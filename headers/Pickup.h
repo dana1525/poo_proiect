@@ -14,7 +14,7 @@ public:
 
     void draw(sf::RenderWindow &window) override;
 
-    void collision(Entity &entity);
+    void collision(const Entity &entity);
 };
 
 #endif //OOP_PICKUP_H
