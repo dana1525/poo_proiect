@@ -132,7 +132,7 @@ void Game::sUserInput() {
 }
 
 void Game::sUpdate(float deltaSec) {
-    for (auto &e: m_entities.getEntities()) {//to verify later if it's not a diamond?
+    for (auto &e: m_entities.getEntities()) {//to verify later if it's not a pickup item
         try {
             e->applyGravity(m_window.getSize().y, deltaSec * 3);
             e->checkBounds(wWidth, wHeight);

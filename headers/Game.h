@@ -25,24 +25,44 @@ class Game {
     GameState m_currentState = GameState::MENU; //initialize game state
     std::shared_ptr<Entity> m_player;
 
+    /**
+    * @brief Initializes the game systems and resources.
+    */
     void initialize();
 
-    //static void setPaused(bool &m_paused);
+//static void setPaused(bool &m_paused);
 
-    ///systems
-    //void sMovement();
+///systems
+//void sMovement();
 
+    /**
+     * @brief Updates the state of all entities in the game.
+     */
     void sUpdate(float deltaSec);
 
+    /**
+     * @brief Processes user input.
+     */
     void sUserInput();
 
+    /**
+    * @brief Renders all game elements.
+    */
     void sRender();
 
+    /**
+    * @brief Handles collisions between entities.
+    */
     void sCollision();
 
 public:
     Game() = default;
 
+    /**
+     * @brief Starts the main game loop.
+     *
+     * Continuously updates, processes input, and renders the game until it is closed.
+     */
     void run();
 };
 

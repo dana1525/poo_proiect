@@ -6,6 +6,12 @@
 #include <SFML/Graphics.hpp>
 #include "Character.h"
 
+/**
+* @class Obstacle
+* @brief Represents an obstacle in the game.
+*
+* Obstacles can interact with other entities, causing harm.
+*/
 
 class Obstacle : public Entity {
 public:
@@ -15,8 +21,11 @@ public:
 
     ///friend std::ostream& operator<<(std::ostream& out, const Obstacle& ob);
 
-
-    //void destroyIfHarmful(Entity &entity);
+    /**
+     * @brief Destroys the entity if there was an interaction with a harmful obstacle.
+     * @param entity The entity interacting with the obstacle.
+     */
+    //void destroyIfHarmful(Entity &entity); //should be changed to a character??
 };
 
 
