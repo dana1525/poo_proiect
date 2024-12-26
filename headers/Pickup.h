@@ -31,6 +31,8 @@ public:
      * @param entity The entity involved in the collision.
      */
     void collision(const Entity &entity);
+
+    void applyGravity(unsigned int wHeight, float deltaSec) override;
 };
 
 #endif //OOP_PICKUP_H

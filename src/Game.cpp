@@ -3,17 +3,13 @@
 #include "../headers/GameException.h"
 #include "../headers/Pickup.h"
 
-//void Game::resizeWindow() {
-//    float ratio = static_cast<float>(m_window.getSize().x) / static_cast<float>(m_window.getSize().y);
-//
-//}
-
 void Game::initialize() {
 
     /*if (!m_font.loadFromFile("..//Comfortaa/Comfortaa-VariableFont_wght.ttf")) {
         std::cout << "error loading the font";
         return;
     }*/
+
 
     //read something from config file????
     try {
@@ -32,16 +28,15 @@ void Game::run() {
     initialize();
     Menu menu(wWidth, wHeight);
 
-    FireCharacter fireCharacter(0, sf::Vector2f(100.f, 100.f));
-    WaterCharacter waterCharacter(1, sf::Vector2f(300.f, 300.f));
-    Obstacle ob(EntityTag::SlimeObstacle, 2, sf::Vector2f(250.f, 250.f));
-    Pickup p(3, sf::Vector2f(600.f, 600.f));
-    //FireCharacter c = fireCharacter;
+//    `FireCharacter fireCharacter(0, sf::Vector2f(100.f, 100.f));`
+//    WaterCharacter waterCharacter(1, sf::Vector2f(300.f, 300.f));
+//    Obstacle ob(EntityTag::SlimeObstacle, 2, sf::Vector2f(250.f, 250.f));
+//    Pickup p(3, sf::Vector2f(600.f, 600.f));
 
-    m_entities.addEntity(fireCharacter.getMTag(), fireCharacter.getMPosition());
-    m_entities.addEntity(waterCharacter.getMTag(), waterCharacter.getMPosition());
-    m_entities.addEntity(ob.getMTag(), ob.getMPosition());
-    m_entities.addEntity(p.getMTag(), p.getMPosition());
+    m_entities.addEntity(EntityTag::FireCharacter, {100.f, 100.f});
+    m_entities.addEntity(EntityTag::WaterCharacter, {300.f, 300.f});
+    m_entities.addEntity(EntityTag::SlimeObstacle, {250.f, 250.f});
+    m_entities.addEntity(EntityTag::Pickup, {600.f, 600.f});
 
     sf::Clock clock;
 
@@ -83,9 +78,9 @@ void Game::run() {
             m_window.display();
         } else if (m_currentState == GameState::PLAYING) {
 
-            std::cout << fireCharacter;
-            std::cout << waterCharacter;
-            std::cout << ob;
+//            std::cout << fireCharacter;
+//            std::cout << waterCharacter;
+//            std::cout << ob;
 
             m_entities.update();
             sUserInput();

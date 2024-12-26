@@ -18,8 +18,9 @@ private:
     sf::Color color; ///< The color of the WaterCharacter
 public:
     explicit WaterCharacter(const size_t &id, const sf::Vector2f &position)
-            : Character(EntityTag::WaterCharacter, id, position) {
+            : Character(id, position) {
         m_shape.setFillColor(sf::Color::Blue);
+        m_tag = EntityTag::WaterCharacter;
     };
 
     /**

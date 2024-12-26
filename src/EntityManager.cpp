@@ -6,7 +6,7 @@
 #include "../headers/Pickup.h"
 #include <memory>
 
-size_t EntityManager::m_totalEntities = 0;
+size_t EntityManager::m_totalEntities = 1;
 
 std::shared_ptr<Entity> EntityManager::addEntity(EntityTag tag, const sf::Vector2f &position) {
 //    std::shared_ptr<Entity> e;
@@ -20,15 +20,16 @@ std::shared_ptr<Entity> EntityManager::addEntity(EntityTag tag, const sf::Vector
         m_toAdd.push_back(e);
         return e;
     } else if (tag == EntityTag::SlimeObstacle) {
-        auto e = std::make_shared<Obstacle>(tag, m_totalEntities++, position);
+        std::cout << "Obstacle made: " << m_totalEntities << "\n";;
+        auto e = std::make_shared<Obstacle>(m_totalEntities++, position, tag);
         m_toAdd.push_back(e);
         return e;
     } else if (tag == EntityTag::Pickup) {
-        auto e = std::make_shared<Pickup>(m_totalEntities, position);
+        auto e = std::make_shared<Pickup>(m_totalEntities++, position);
         m_toAdd.push_back(e);
         return e;
     } else {
-        auto e = std::make_shared<Entity>(tag, m_totalEntities++, position);
+        auto e = std::make_shared<Entity>(m_totalEntities++, position);
         m_toAdd.push_back(e);
         return e;
     }

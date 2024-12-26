@@ -15,7 +15,7 @@ protected:
     float m_jumpForce;     ///< The force applied to the character when jumping.
 
 public:
-    Character(const EntityTag &tag, const size_t &id, const sf::Vector2f &position);
+    Character(const size_t &id, const sf::Vector2f &position);
 
     Character(const Character &other);
 

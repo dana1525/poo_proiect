@@ -1,12 +1,13 @@
 
 #include "../headers/Entity.h"
 
-Entity::Entity(const EntityTag &tag, const size_t &id, const sf::Vector2f &position)
-        : m_tag(tag), m_id(id), m_position(position) {
+Entity::Entity(const size_t &id, const sf::Vector2f &position)
+        : m_tag(EntityTag::Default), m_id(id), m_position(position) {
     m_shape.setSize({40.f, 20.f});
     m_shape.setFillColor(sf::Color::Green);
     m_shape.setPosition(position);
 }
+
 
 EntityTag Entity::getMTag() const {
     return m_tag;

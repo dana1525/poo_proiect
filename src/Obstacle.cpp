@@ -2,9 +2,10 @@
 #include "../headers/Obstacle.h"
 #include <SFML/Graphics.hpp>
 
-Obstacle::Obstacle(const EntityTag &tag, const size_t &id, const sf::Vector2f &position)
-        : Entity(tag, id, position) {
+Obstacle::Obstacle(const size_t &id, const sf::Vector2f &position, EntityTag tag)
+        : Entity(id, position) {
     m_shape.setSize({50.f, 10.f});
+    m_tag = tag;
     //m_shape.setPointCount(4);
     //m_shape.setPosition(position);
     if (m_tag == EntityTag::FireObstacle)

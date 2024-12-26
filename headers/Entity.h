@@ -19,7 +19,7 @@ class Entity {
 protected:
     EntityTag m_tag = EntityTag::Default;  ///< The type/category of the entity.
     size_t m_id = 0;                       ///< Unique identifier for the entity.
-    sf::RectangleShape m_shape;               ///< SFML shape used to represent the entity visually.
+    sf::RectangleShape m_shape;            ///< SFML shape used to represent the entity visually.
     sf::Vector2f m_position;               ///< Position of the entity in the game.
     bool m_onGround = false;               ///< Attribute indicating if the entity is currently on the ground.
     float m_yvelocity = 0.0f;              ///< Vertical velocity of the entity (used for gravity).
@@ -28,7 +28,7 @@ protected:
 public:
     Entity() = default;
 
-    Entity(const EntityTag &tag, const size_t &id, const sf::Vector2f &position);
+    Entity(const size_t &id, const sf::Vector2f &position);
 
     Entity(const Entity &other) = default;
 
@@ -53,7 +53,7 @@ public:
      * @param wHeight The height of the window, used to check if the entity is on the ground.
      * @param deltaSec The elapsed time since the last update, used to calculate gravity's effect.
      */
-    void applyGravity(unsigned int wHeight, float deltaSec);
+    virtual void applyGravity(unsigned int wHeight, float deltaSec);
 
     void checkBounds(unsigned int wWidth, unsigned int wHeight);
 

@@ -74,6 +74,8 @@ add_executable(${PROJECT_NAME}
         headers/GameException.h
         headers/Pickup.h
         src/Pickup.cpp
+        headers/Wall.h
+        src/Wall.cpp
 )
 
 include(cmake/CompilerFlags.cmake)

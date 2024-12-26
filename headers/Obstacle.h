@@ -15,7 +15,7 @@
 
 class Obstacle : public Entity {
 public:
-    Obstacle(const EntityTag &tag, const size_t &id, const sf::Vector2f &position);
+    Obstacle(const size_t &id, const sf::Vector2f &position, EntityTag tag);
 
     ~Obstacle() override = default;
 

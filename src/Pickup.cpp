@@ -2,9 +2,10 @@
 #include "../headers/Pickup.h"
 
 Pickup::Pickup(const size_t &id, const sf::Vector2f &position)
-        : Entity(EntityTag::Pickup, id, position), m_collected(false) {
+        : Entity(id, position), m_collected(false) {
     m_shape.setSize({20.f, 20.f});
     //m_shape.setPointCount(4);
+    m_tag = EntityTag::Pickup;
     m_shape.setFillColor(sf::Color::Magenta);
 }
 
@@ -27,4 +28,18 @@ void Pickup::collision(const Entity &entity) {
             collect();
 }
 
-//override applyGravity??
+
+//override applyGravity
+//so the pickup levitates
+void Pickup::applyGravity(unsigned int wHeight, float deltaSec) {
+    if (!m_onGround) {
+        m_yvelocity += m_gravity * deltaSec;
+        m_position.y += m_yvelocity * deltaSec;
+    }
+    if (m_position.y + m_shape.getSize().y >= (float) wHeight - 20) {
+        m_position.y = (float) wHeight - m_shape.getSize().y - 20;
+        m_yvelocity = 0.0f;
+        m_onGround = true;
+    }
+    m_shape.setPosition(m_position);
+}
