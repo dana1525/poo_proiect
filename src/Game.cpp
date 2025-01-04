@@ -28,14 +28,11 @@ void Game::run() {
     initialize();
     Menu menu(wWidth, wHeight);
 
-//    `FireCharacter fireCharacter(0, sf::Vector2f(100.f, 100.f));`
-//    WaterCharacter waterCharacter(1, sf::Vector2f(300.f, 300.f));
-//    Obstacle ob(EntityTag::SlimeObstacle, 2, sf::Vector2f(250.f, 250.f));
-//    Pickup p(3, sf::Vector2f(600.f, 600.f));
-
-    m_entities.addEntity(EntityTag::FireCharacter, {100.f, 100.f});
-    m_entities.addEntity(EntityTag::WaterCharacter, {300.f, 300.f});
-    m_entities.addEntity(EntityTag::SlimeObstacle, {250.f, 250.f});
+    m_fire = m_entities.addFire({100.f, 100.f});
+    m_water = m_entities.addWater({300.f, 300.f});
+    m_entities.addEntity(EntityTag::Wall, {10.f, 690.f});
+    m_entities.addEntity(EntityTag::FireEnvironment, {110.f, 690.f});
+    m_entities.addEntity(EntityTag::WaterEnvironment, {160.f, 690.f});
     m_entities.addEntity(EntityTag::Pickup, {600.f, 600.f});
 
     sf::Clock clock;
@@ -78,15 +75,11 @@ void Game::run() {
             m_window.display();
         } else if (m_currentState == GameState::PLAYING) {
 
-//            std::cout << fireCharacter;
-//            std::cout << waterCharacter;
-//            std::cout << ob;
-
             m_entities.update();
             sUserInput();
             sUpdate(deltaSec);
             sRender();
-            sCollision();
+            sCollision(deltaSec);
         }
 
 
@@ -129,30 +122,35 @@ void Game::sUserInput() {
     for (auto &e: m_entities.getEntities())
         if (auto character = std::dynamic_pointer_cast<Character>(e))
             character->controller();
+
 }
 
 void Game::sUpdate(float deltaSec) {
     for (auto &e: m_entities.getEntities()) {//to verify later if it's not a pickup item
-        try {
-            e->applyGravity(m_window.getSize().y, deltaSec * 3);
-            e->checkBounds(wWidth, wHeight);
-        } catch (...) {
-            throw LogicException("Entity out of bounds or gravity error");
-        }
+        if (auto character = std::dynamic_pointer_cast<Character>(e)) {
+            character->applyGravity(m_window.getSize().y, deltaSec * 3);
+            character->checkBounds(wWidth, wHeight);
+        } else if (auto p = std::dynamic_pointer_cast<Pickup>(e))
+            p->applyGravity(m_window.getSize().y, deltaSec * 3);
     }
 }
 
-void Game::sCollision() {
+void Game::sCollision(float deltaSec) {
+    //m_fire->setOnGround(false);
+    //m_water->setOnGround(false);
     for (auto &e: m_entities.getEntities()) {
         if (auto p = std::dynamic_pointer_cast<Pickup>(e)) {
             for (auto &other: m_entities.getEntities()) {
                 if (e != other)
                     p->collision(*other);
             }
-        } else if (auto o = std::dynamic_pointer_cast<Obstacle>(e)) {
+        } else if (auto o = std::dynamic_pointer_cast<Environment>(e)) {
             for (auto &other: m_entities.getEntities()) {
-                if (e != other)
+                if (e != other) {
+//                    if (auto character = std::dynamic_pointer_cast<Character>(e))
+//                        character->stayOnWall(*o, m_window.getSize().y, deltaSec * 3);
                     o->destroyIfHarmful(*other);
+                }
             }
         }
     }

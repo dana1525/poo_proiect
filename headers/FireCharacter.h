@@ -21,17 +21,12 @@ public:
             : Character(id, position) {
         m_shape.setFillColor(sf::Color::Red);
         m_tag = EntityTag::FireCharacter;
-    };
+    }
 
-    /**
+/**
      * @brief Handles input specific to the FireCharacter.
      */
     void handleInput() override;
-
-//    void walkOnFire();
-//
-//    void walkOnWater();
-
 };
 
 

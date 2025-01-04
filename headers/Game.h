@@ -6,7 +6,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics.hpp>
-#include "Obstacle.h"
+#include "Environment.h"
 #include "Menu.h"
 #include "EntityManager.h"
 #include "FireCharacter.h"
@@ -24,11 +24,9 @@ class Game {
 //    bool m_paused = false;
 //    bool m_running = true;
     GameState m_currentState = GameState::MENU; //initialize game state
-    std::shared_ptr<Entity> m_player;
+    std::shared_ptr<FireCharacter> m_fire;
+    std::shared_ptr<WaterCharacter> m_water;
 
-    void setView();
-
-    void resizeWindow();
 
     /**
     * @brief Initializes the game systems and resources.
@@ -58,7 +56,7 @@ class Game {
     /**
     * @brief Handles collisions between entities.
     */
-    void sCollision();
+    void sCollision(float deltaSec);
 
 public:
     Game() = default;

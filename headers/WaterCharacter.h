@@ -21,16 +21,12 @@ public:
             : Character(id, position) {
         m_shape.setFillColor(sf::Color::Blue);
         m_tag = EntityTag::WaterCharacter;
-    };
+    }
 
     /**
      * @brief Handles input specific to the WaterCharacter.
      */
     void handleInput() override;
-
-//    void walkOnFire();
-//
-//    void walkOnWater();
 
     ///void print(std::ostream& out) const override;
 };

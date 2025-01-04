@@ -10,11 +10,3 @@ void WaterCharacter::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         jump();
 }
-
-//void WaterCharacter::walkOnFire() {
-//    m_alive = false;
-//}
-//
-//void WaterCharacter::walkOnWater() {
-//    m_alive = true;
-//}

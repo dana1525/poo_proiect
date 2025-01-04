@@ -4,6 +4,8 @@
 
 #include "../headers/Entity.h"
 #include "Character.h"
+#include "FireCharacter.h"
+#include "WaterCharacter.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -46,6 +48,10 @@ public:
      * @return A shared pointer to the newly added entity.
      */
     std::shared_ptr<Entity> addEntity(EntityTag tag, const sf::Vector2f &position);
+
+    std::shared_ptr<FireCharacter> addFire(const sf::Vector2f &position);
+
+    std::shared_ptr<WaterCharacter> addWater(const sf::Vector2f &position);
 
     /**
      * @brief Retrieves all entities.

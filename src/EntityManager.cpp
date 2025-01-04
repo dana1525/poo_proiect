@@ -2,7 +2,7 @@
 #include "../headers/EntityManager.h"
 #include "../headers/FireCharacter.h"
 #include "../headers/WaterCharacter.h"
-#include "../headers/Obstacle.h"
+#include "../headers/Environment.h"
 #include "../headers/Pickup.h"
 #include <memory>
 
@@ -19,9 +19,20 @@ std::shared_ptr<Entity> EntityManager::addEntity(EntityTag tag, const sf::Vector
         auto e = std::make_shared<WaterCharacter>(m_totalEntities++, position);
         m_toAdd.push_back(e);
         return e;
-    } else if (tag == EntityTag::SlimeObstacle) {
-        std::cout << "Obstacle made: " << m_totalEntities << "\n";;
-        auto e = std::make_shared<Obstacle>(m_totalEntities++, position, tag);
+    } else if (tag == EntityTag::SlimeEnvironment) {
+        auto e = std::make_shared<Environment>(m_totalEntities++, position, tag);
+        m_toAdd.push_back(e);
+        return e;
+    } else if (tag == EntityTag::WaterEnvironment) {
+        auto e = std::make_shared<Environment>(m_totalEntities++, position, tag);
+        m_toAdd.push_back(e);
+        return e;
+    } else if (tag == EntityTag::FireEnvironment) {
+        auto e = std::make_shared<Environment>(m_totalEntities++, position, tag);
+        m_toAdd.push_back(e);
+        return e;
+    } else if (tag == EntityTag::Wall) {
+        auto e = std::make_shared<Environment>(m_totalEntities++, position, tag);
         m_toAdd.push_back(e);
         return e;
     } else if (tag == EntityTag::Pickup) {
@@ -33,6 +44,18 @@ std::shared_ptr<Entity> EntityManager::addEntity(EntityTag tag, const sf::Vector
         m_toAdd.push_back(e);
         return e;
     }
+}
+
+std::shared_ptr<FireCharacter> EntityManager::addFire(const sf::Vector2f &position) {
+    auto e = std::make_shared<FireCharacter>(m_totalEntities++, position);
+    m_toAdd.push_back(e);
+    return e;
+}
+
+std::shared_ptr<WaterCharacter> EntityManager::addWater(const sf::Vector2f &position) {
+    auto e = std::make_shared<WaterCharacter>(m_totalEntities++, position);
+    m_toAdd.push_back(e);
+    return e;
 }
 
 void EntityManager::update() {
@@ -69,3 +92,7 @@ EntityVec EntityManager::getEntities(EntityTag &tag) {
             matchingEntities.push_back(m);
     return matchingEntities; ///i think i should do it for the map too
 }
+
+
+
+

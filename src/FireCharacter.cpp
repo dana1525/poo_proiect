@@ -10,11 +10,3 @@ void FireCharacter::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         jump();
 }
-
-//void FireCharacter::walkOnFire() {
-//    m_alive = true;
-//}
-//
-//void FireCharacter::walkOnWater() {
-//    m_alive = false;
-//}

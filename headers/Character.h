@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "Enums.h"
+#include "Environment.h"
+
+class Environment;
 
 class Character : public Entity {
 protected:
@@ -64,9 +67,11 @@ public:
      */
     void jump();
 
-    ///virtual bool isAffectedByObstacle(const std::string& type) const override;
+    ///virtual bool isAffectedByEnvironment(const std::string& type) const override;
 
     ///void takeDamage();
+
+    void stayOnWall(Environment &environment, unsigned int wHeight, float deltaSec);  //??????????
 
 };
 

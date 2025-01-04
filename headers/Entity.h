@@ -38,6 +38,8 @@ public:
 
     const sf::Vector2f &getMPosition() const;
 
+    const float &getMyvelocity() const;
+
     /**
      * @brief Draws the entity on the given window.
      *
@@ -53,6 +55,12 @@ public:
      * @param wHeight The height of the window, used to check if the entity is on the ground.
      * @param deltaSec The elapsed time since the last update, used to calculate gravity's effect.
      */
+    void setOnGround(bool onGround);
+
+    void setPosition(float x, float y);
+
+    void setYvelocity();
+
     virtual void applyGravity(unsigned int wHeight, float deltaSec);
 
     void checkBounds(unsigned int wWidth, unsigned int wHeight);

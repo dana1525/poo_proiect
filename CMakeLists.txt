@@ -62,8 +62,8 @@ add_executable(${PROJECT_NAME}
         src/WaterCharacter.cpp
         headers/Menu.h
         src/Menu.cpp
-        headers/Obstacle.h
-        src/Obstacle.cpp
+        headers/Environment.h
+        src/Environment.cpp
         headers/Entity.h
         src/Entity.cpp
         headers/EntityManager.h
@@ -74,8 +74,6 @@ add_executable(${PROJECT_NAME}
         headers/GameException.h
         headers/Pickup.h
         src/Pickup.cpp
-        headers/Wall.h
-        src/Wall.cpp
 )
 
 include(cmake/CompilerFlags.cmake)

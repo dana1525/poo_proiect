@@ -13,9 +13,10 @@ enum class EntityTag {
     Default,            ///< Default entity tag, used as a fallback or uninitialized state.
     FireCharacter,      ///< Represents a fire character.
     WaterCharacter,     ///< Represents a water character.
-    FireObstacle,       ///< Represents a fire obstacle.
-    WaterObstacle,      ///< Represents a water obstacle.
-    SlimeObstacle,      ///< Represents a slime obstacle.
+    FireEnvironment,       ///< Represents a fire obstacle.
+    WaterEnvironment,      ///< Represents a water obstacle.
+    SlimeEnvironment,      ///< Represents a slime obstacle.
+    Wall,
     Pickup              ///< Represents a pickup object.
 };
 

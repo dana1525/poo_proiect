@@ -21,12 +21,28 @@ const sf::Vector2f &Entity::getMPosition() const {
     return m_position;
 }
 
+const float &Entity::getMyvelocity() const {
+    return m_yvelocity;
+}
+
 void Entity::draw(sf::RenderWindow &window) {
     window.draw(m_shape);
 }
 
 void Entity::destroy() {
     m_alive = false;
+}
+
+void Entity::setOnGround(bool onGround) {
+    m_onGround = onGround;
+}
+
+void Entity::setPosition(float x, float y) {
+    m_shape.setPosition({x, y});
+}
+
+void Entity::setYvelocity() {
+    m_yvelocity = 0.0f;
 }
 
 void Entity::applyGravity(unsigned int wHeight, float deltaSec) {
@@ -68,14 +84,14 @@ void Entity::print(std::ostream &out) const {
         case EntityTag::WaterCharacter:
             out << "WaterCharacter\n";
             break;
-        case EntityTag::FireObstacle:
-            out << "FireObstacle\n";
+        case EntityTag::FireEnvironment:
+            out << "FireEnvironment\n";
             break;
-        case EntityTag::WaterObstacle:
-            out << "WaterObstacle\n";
+        case EntityTag::WaterEnvironment:
+            out << "WaterEnvironment\n";
             break;
-        case EntityTag::SlimeObstacle:
-            out << "SlimeObstacle\n";
+        case EntityTag::SlimeEnvironment:
+            out << "SlimeEnvironment\n";
             break;
         case EntityTag::Pickup:
             out << "Pickup\n";
