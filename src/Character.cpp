@@ -55,14 +55,3 @@ void Character::controller() {
         jump();
     handleInput();
 }
-
-void Character::stayOnWall(Environment &environment, unsigned int wHeight, float deltaSec) {
-    if (environment.getMTag() == EntityTag::Wall)
-        if (this->getBounds().intersects(environment.getBounds()))
-            if (m_position.y + m_shape.getSize().y > environment.getMPosition().y &&
-                m_position.y <= environment.getMPosition().y + environment.getBounds().height) {
-                m_onGround = true;
-                m_position.y = (float) wHeight - environment.getMPosition().y;
-                m_yvelocity = 0.0f;
-            }
-}

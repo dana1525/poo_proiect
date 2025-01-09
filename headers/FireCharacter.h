@@ -17,10 +17,10 @@ class FireCharacter : public Character {
 private:
     sf::Color color; ///< The color of the WaterCharacter
 public:
-    explicit FireCharacter(const size_t &id, const sf::Vector2f &position)
+    explicit FireCharacter(const size_t &id, const sf::Vector2f &position, EntityTag tag)
             : Character(id, position) {
         m_shape.setFillColor(sf::Color::Red);
-        m_tag = EntityTag::FireCharacter;
+        m_tag = tag;
     }
 
 /**

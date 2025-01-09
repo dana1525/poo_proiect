@@ -4,6 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
+#include "Command.h"
 
 /**
  * @class Menu
@@ -16,10 +18,10 @@ class Menu {
     unsigned long long selectedItemIndex; ///< Index of the currently selected menu item.
     std::vector<sf::Text> menuItems; ///< Collection of menu items represented as SFML text objects.
     sf::Font myFont; ///< Font used for rendering menu items.
+    std::vector<std::shared_ptr<Command>> commands;
 public:
     Menu(unsigned int wWidth, unsigned int wHeight);
 
-    unsigned long long getSelectedItemIndex() const;
 
     /**
      * @brief Draws the menu items to the specified SFML window.
@@ -42,6 +44,10 @@ public:
      * @param event The SFML event object representing user input.
      */
     void run(const sf::Event &event);
+
+    void addCommand(const std::shared_ptr<Command> &command);
+
+    void executeCommand();
 };
 
 

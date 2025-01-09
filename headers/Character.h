@@ -67,12 +67,6 @@ public:
      */
     void jump();
 
-    ///virtual bool isAffectedByEnvironment(const std::string& type) const override;
-
-    ///void takeDamage();
-
-    void stayOnWall(Environment &environment, unsigned int wHeight, float deltaSec);  //??????????
-
 };
 
 

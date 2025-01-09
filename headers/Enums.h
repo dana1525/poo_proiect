@@ -20,13 +20,4 @@ enum class EntityTag {
     Pickup              ///< Represents a pickup object.
 };
 
-//to change??
-enum class GameState {
-    MENU,
-    PLAYING,
-    //PAUSE,
-    EXIT
-};
-
-
 #endif //OOP_ENUMS_H

@@ -49,12 +49,12 @@ public:
     virtual void draw(sf::RenderWindow &window);
 
     /**
-     * @brief Applies gravity to the entity.
-     *
-     * Updates the entity's vertical velocity and position based on gravity and elapsed time.
-     * @param wHeight The height of the window, used to check if the entity is on the ground.
-     * @param deltaSec The elapsed time since the last update, used to calculate gravity's effect.
-     */
+    * @brief Applies gravity to the entity.
+    *
+    * Updates the entity's vertical velocity and position based on gravity and elapsed time.
+    * @param wHeight The height of the window, used to check if the entity is on the ground.
+    * @param deltaSec The elapsed time since the last update, used to calculate gravity's effect.
+    */
     void setOnGround(bool onGround);
 
     void setPosition(float x, float y);

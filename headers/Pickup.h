@@ -13,7 +13,7 @@ class Pickup : public Entity {
 private:
     bool m_collected;
 public:
-    Pickup(const size_t &id, const sf::Vector2f &position);
+    Pickup(const size_t &id, const sf::Vector2f &position, EntityTag tag);
 
     /**
      * @brief Marks the Pickup as collected and triggers its destruction.

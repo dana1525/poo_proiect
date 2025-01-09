@@ -96,6 +96,9 @@ void Entity::print(std::ostream &out) const {
         case EntityTag::Pickup:
             out << "Pickup\n";
             break;
+        case EntityTag::Wall:
+            out << "Wall\n";
+            break;
     }
     out << "Position: (" << m_position.x << ", " << m_position.y << ")\n";
 }

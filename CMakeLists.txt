@@ -67,13 +67,21 @@ add_executable(${PROJECT_NAME}
         headers/Entity.h
         src/Entity.cpp
         headers/EntityManager.h
-        src/EntityManager.cpp
         headers/Game.h
         src/Game.cpp
         headers/Enums.h
         headers/GameException.h
         headers/Pickup.h
         src/Pickup.cpp
+        headers/State.h
+        headers/MenuState.h
+        src/MenuState.cpp
+        headers/PlayingState.h
+        src/PlayingState.cpp
+        headers/Command.h
+        headers/StartGameCommand.h
+        headers/ExitGameCommand.h
+        headers/LevelsCommand.h
 )
 
 include(cmake/CompilerFlags.cmake)

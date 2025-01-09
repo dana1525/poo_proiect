@@ -51,10 +51,6 @@ void Menu::moveDown() {
     }
 }
 
-unsigned long long Menu::getSelectedItemIndex() const {
-    return selectedItemIndex;
-}
-
 void Menu::run(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Up)
@@ -64,4 +60,11 @@ void Menu::run(const sf::Event &event) {
     }
 }
 
-///std::ostream& operator<<(std::ostream& out, ){}
+void Menu::addCommand(const std::shared_ptr<Command> &command) {
+    commands.push_back(command);
+}
+
+void Menu::executeCommand() {
+    if (selectedItemIndex < commands.size())
+        commands[selectedItemIndex]->execute();
+}
