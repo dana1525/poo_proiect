@@ -3,6 +3,7 @@
 #define OOP_PICKUP_H
 
 #include "Entity.h"
+#include "Character.h"
 
 /**
  * @class Pickup
@@ -30,7 +31,7 @@ public:
      * @brief Handles collision with another entity.
      * @param entity The entity involved in the collision.
      */
-    void collision(const Entity &entity);
+    void collision(const Character &character);
 
     void applyGravity(unsigned int wHeight, float deltaSec) override;
 };

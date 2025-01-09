@@ -21,11 +21,11 @@ void Pickup::draw(sf::RenderWindow &window) {
         window.draw(m_shape);
 }
 
-void Pickup::collision(const Entity &entity) {
-    if (entity.getMTag() == EntityTag::FireCharacter ||
-        entity.getMTag() == EntityTag::WaterCharacter)
-        if (entity.getBounds().intersects(this->getBounds()))
-            collect();
+void Pickup::collision(const Character &character) {
+//    if (entity.getMTag() == EntityTag::FireCharacter ||
+//        entity.getMTag() == EntityTag::WaterCharacter)
+    if (character.getBounds().intersects(this->getBounds()))
+        collect();
 }
 
 

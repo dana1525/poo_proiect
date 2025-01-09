@@ -24,29 +24,6 @@ class Game {
     */
     void initialize();
 
-///systems
-//void sMovement();
-//
-//    /**
-//     * @brief Updates the state of all entities in the game.
-//     */
-//    void sUpdate(float deltaSec);
-//
-//    /**
-//     * @brief Processes user input.
-//     */
-//    void sUserInput();
-//
-//    /**
-//    * @brief Renders all game elements.
-//    */
-//    void sRender();
-//
-//    /**
-//    * @brief Handles collisions between entities.
-//    */
-//    void sCollision(float deltaSec);
-
 public:
     Game() : m_stateManager(m_window) {};
 

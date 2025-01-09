@@ -4,8 +4,11 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Character.h"
 #include <memory>
+#include "Entity.h"
+#include "Character.h"
+
+class Character;
 
 /**
 * @class Environment
@@ -24,7 +27,7 @@ public:
      * @brief Destroys the entity if there was an interaction with a harmful obstacle.
      * @param entity The entity interacting with the environment.
      */
-    void destroyIfHarmful(Entity &entity); //should be changed to a character??
+    void destroyIfHarmful(Character &character); //should be changed to a character??
 
 };
 

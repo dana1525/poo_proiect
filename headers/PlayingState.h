@@ -12,8 +12,7 @@
 class PlayingState : public State {
 protected:
     EntityManager<Entity> m_entities;
-    std::shared_ptr<FireCharacter> m_fire;
-    std::shared_ptr<WaterCharacter> m_water;
+    EntityManager<Character> m_characters;
 public:
     explicit PlayingState();
 

@@ -7,7 +7,7 @@
 #include "Enums.h"
 #include "Environment.h"
 
-class Environment;
+//class Environment;
 
 class Character : public Entity {
 protected:

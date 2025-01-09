@@ -22,7 +22,7 @@ Environment::Environment(const size_t &id, const sf::Vector2f &position, EntityT
 }
 
 
-void Environment::destroyIfHarmful(Entity &entity) {
+void Environment::destroyIfHarmful(Character &character) {
     //entity.setOnGround(false);
 //    if (m_position.y < entity.getMPosition().y + entity.getBounds().height &&
 //        entity.getMPosition().y < m_position.y + getBounds().height &&
@@ -33,31 +33,32 @@ void Environment::destroyIfHarmful(Entity &entity) {
 //        entity.setOnGround(true);
 //        entity.setPosition(entity.getMPosition().x, m_position.y);
 //    }
-    if (this->getBounds().intersects(entity.getBounds())) {
+    if (this->getBounds().intersects(character.getBounds())) {
         if (m_tag == EntityTag::Wall) {
-            if (entity.getMPosition().y + entity.getBounds().height >= m_position.y &&
-                entity.getMPosition().y <= m_position.y + getBounds().height) {
-                entity.setOnGround(true);
-                entity.setPosition(entity.getMPosition().x, m_position.y - entity.getBounds().height);
+            if (character.getMPosition().y + character.getBounds().height >= m_position.y &&
+                character.getMPosition().y <= m_position.y + getBounds().height) {
+                character.setOnGround(true);
+                character.setPosition(character.getMPosition().x, m_position.y - character.getBounds().height);
 
-                if (entity.getMyvelocity() > 0) {
-                    entity.setYvelocity();
+                if (character.getMyvelocity() > 0) {
+                    character.setYvelocity();
                 }
             }
         }
     }
 
-    if (this->getBounds().intersects(entity.getBounds())) {
-        if (m_tag == EntityTag::WaterEnvironment && entity.getMTag() == EntityTag::FireCharacter) {
-            entity.destroy();
+    if (this->getBounds().intersects(character.getBounds())) {
+        if (m_tag == EntityTag::WaterEnvironment && character.getMTag() == EntityTag::FireCharacter) {
+            character.destroy();
             //menu window or restart the game?
         }
-        if (m_tag == EntityTag::FireEnvironment && entity.getMTag() == EntityTag::WaterCharacter) {
-            entity.destroy();
+        if (m_tag == EntityTag::FireEnvironment && character.getMTag() == EntityTag::WaterCharacter) {
+            character.destroy();
         }
         if (m_tag == EntityTag::SlimeEnvironment &&
-            ((entity.getMTag() == EntityTag::FireCharacter) || (entity.getMTag() == EntityTag::WaterCharacter))) {
-            entity.destroy();
+            ((character.getMTag() == EntityTag::FireCharacter) ||
+             (character.getMTag() == EntityTag::WaterCharacter))) {
+            character.destroy();
         }
     }
 }
